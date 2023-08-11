@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'adminlte3',
     'adminlte3_theme',
+    'localflavor',
     'app',
 ]
 
