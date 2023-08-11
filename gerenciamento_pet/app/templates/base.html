@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'adminlte/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+    
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <main class="container">
+        {% block content %}
+        
+        {% endblock content %}
+    </main>
+    {% block javascript %}
+        {{block.super}}
+
+    {% endblock javascript %}
+</body>
+</html>
+<!--
+    {{block.super}} usado para não subscrever o javascript do base.html
+        ele captura tudo que tem no block javascript e adiciona o que eu colocar dentro desse bloco
+
+-->
