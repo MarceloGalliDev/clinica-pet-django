@@ -10,7 +10,7 @@
             <h3 class="box-title">Cadastro de clientes</h3>
         </div>
         <div class="box-body">
-            <form action="POST">
+            <form method="post" action="{% url 'cadastrar_cliente' %}">
                 {% csrf_token %}
                 <div class="form-group">
                     <label>Nome: </label>

@@ -9,9 +9,10 @@ from ..forms.cliente_forms import ClienteForm
 from ..forms.endereco_forms import EnderecoClienteForm
 from ..entidades import cliente, endereco
 from ..services import cliente_service, endereco_service
+from django.db import transaction
 
 
-def cadastrar_cliente(request):
+def cadastrar_cliente1(request):
     if request.method == "POST":
         # aqui recebemos os dados la do formulario
         form_cliente = ClienteForm(request.POST)
@@ -41,4 +42,29 @@ def cadastrar_cliente(request):
         # aqui significa que ele abriu o formulário para poder digitar
         form_cliente = ClienteForm()
         form_endereco = EnderecoClienteForm()
+    return render(request, 'clientes/form_cliente.html', {'form_cliente': form_cliente, 'form_endereco': form_endereco})
+
+
+
+def cadastrar_cliente(request):
+    if request.method == "POST":
+        form_cliente = ClienteForm(request.POST)
+        form_endereco = EnderecoClienteForm(request.POST)
+        if form_cliente.is_valid() and form_endereco.is_valid():
+            try:
+                with transaction.atomic():
+                    endereco_novo = endereco.Endereco(**form_endereco.cleaned_data)
+                    endereco_bd = endereco_service.cadastrar_endereco(endereco_novo)
+                    cliente_novo = cliente.Cliente(endereco=endereco_bd, **form_cliente.cleaned_data)
+                    cliente_service.cadastrar_cliente(cliente_novo)
+                # Redirecionar para a página desejada, talvez com uma mensagem de sucesso
+                # return redirect('url_para_redirecionar')
+            except Exception as e:
+                print('Error!')
+                pass
+
+    else:
+        form_cliente = ClienteForm()
+        form_endereco = EnderecoClienteForm()
+
     return render(request, 'clientes/form_cliente.html', {'form_cliente': form_cliente, 'form_endereco': form_endereco})
