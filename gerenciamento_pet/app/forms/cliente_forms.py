@@ -10,8 +10,8 @@ class ClienteForm(forms.ModelForm):
         model = Cliente
         fields = ['nome', 'email', 'data_nascimento', 'cpf', 'profissao']
         # adicionando atributos
-        # widgets = {
-        #     'nome': TextInput(
-        #         attrs={'class':'form-control'}
-        #         )
-        # }
+        widgets = {
+            'data_nascimento': DateInput(
+                attrs={'type':'date'}
+                )
+        }
