@@ -9,3 +9,9 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nome', 'email', 'data_nascimento', 'cpf', 'profissao']
+        # adicionando atributos
+        # widgets = {
+        #     'nome': TextInput(
+        #         attrs={'class':'form-control'}
+        #         )
+        # }

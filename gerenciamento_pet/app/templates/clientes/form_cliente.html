@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load meus_filtros %}
+
 {% block title %}
     Cadastro de Clientes
 {% endblock title %}    
@@ -14,37 +16,37 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <label>Nome: </label>
-                    {{form_cliente.nome}}
+                    {{form_cliente.nome|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>Data de nascimento: </label>
-                    {{form_cliente.data_nascimento}}
+                    {{form_cliente.data_nascimento|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>E-mail: </label>
-                    {{form_cliente.email}}
+                    {{form_cliente.email|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>CPF: </label>
-                    {{form_cliente.cpf}}
+                    {{form_cliente.cpf|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>Profissão: </label>
-                    {{form_cliente.profissao}}
+                    {{form_cliente.profissao|addclass:'form-control'}}
                 </div>
                 <hr>
                 <h4>Endereço</h4>
                 <div class="form-group">
                     <label>Rua: </label>
-                    {{form_endereco.rua}}
+                    {{form_endereco.rua|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>Cidade: </label>
-                    {{form_endereco.cidade}}
+                    {{form_endereco.cidade|addclass:'form-control'}}
                 </div>
                 <div class="form-group">
                     <label>Estado: </label>
-                    {{form_endereco.estado}}
+                    {{form_endereco.estado|addclass:'form-control'}}
                 </div>
 
                  <div class="form-group">
