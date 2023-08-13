@@ -1,11 +1,9 @@
 # flake8: noqa
-class Cliente():
+class Endereco():
     def __init__(self, rua, cidade, estado):
         self.__rua = rua
         self.__cidade = cidade
         self.__estado = estado
-
-
 
     @property
     def rua(self):

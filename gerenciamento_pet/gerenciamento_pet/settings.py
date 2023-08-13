@@ -1,3 +1,4 @@
+# flake8: noqa
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -17,7 +18,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'change-me')
 DEBUG = bool(int(os.getenv('DEBUG', '0')))
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',')
+    if h.strip()
+]
 
 
 INSTALLED_APPS = [
@@ -27,10 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
     'adminlte3',
     'adminlte3_theme',
     'localflavor',
-    'app',
 ]
 
 
