@@ -30,10 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app',
     'adminlte3',
     'adminlte3_theme',
     'localflavor',
-    'app',
 ]
 
 
