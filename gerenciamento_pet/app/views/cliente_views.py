@@ -1,7 +1,10 @@
 # flake8: noqa
 # pylint: disable=all
 
-from django.shortcuts import render
+import datetime
+
+from django.shortcuts import render, redirect
+
 from ..forms.cliente_forms import ClienteForm
 from ..forms.endereco_forms import EnderecoClienteForm
 from ..entidades import cliente, endereco
@@ -33,7 +36,7 @@ def cadastrar_cliente(request):
                                            profissao=profissao, cpf=cpf, endereco=endereco_bd)
                 # aqui persistimos os dados para inserir os dados no banco
                 cliente_service.cadastrar_cliente(cliente_novo)
-                return redirect('listar_clientes')
+                return print('ok!')
     else:
         # aqui significa que ele abriu o formulário para poder digitar
         form_cliente = ClienteForm()
