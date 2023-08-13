@@ -13,4 +13,7 @@ def cadastrar_cliente(cliente):
         data_nascimento=cliente.data_nascimento,
         profissao=cliente.profissao
     )
-    
+
+
+def listar_clientes():
+    return Cliente.objects.all()

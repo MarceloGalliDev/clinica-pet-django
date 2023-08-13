@@ -12,6 +12,12 @@ from ..services import cliente_service, endereco_service
 from django.db import transaction
 
 
+def listar_clientes(request):
+    # aqui pegamos todos os clientes cadastrados no banco de dados
+    clientes = cliente_service.listar_clientes()
+    return render(request, 'clientes/listar_clientes.html', {'clientes': clientes})
+
+
 def cadastrar_cliente(request):
     if request.method == "POST":
         # aqui recebemos os dados la do formulario
