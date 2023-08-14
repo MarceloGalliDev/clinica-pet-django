@@ -45,6 +45,7 @@ def cadastrar_cliente(request):
                                                 profissao=profissao, cpf=cpf, endereco=endereco_bd)
                         # aqui persistimos os dados para inserir os dados no banco
                         cliente_service.cadastrar_cliente(cliente_novo)
+                        return redirect('listar_clientes')
             except Exception as e:
                 print("Error")
                 pass
