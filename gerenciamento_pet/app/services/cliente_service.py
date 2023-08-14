@@ -17,3 +17,7 @@ def cadastrar_cliente(cliente):
 
 def listar_clientes():
     return Cliente.objects.all()
+
+
+def listar_cliente_id(id):
+    return Cliente.objects.get(id=id)
