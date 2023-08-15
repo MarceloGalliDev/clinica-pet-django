@@ -9,5 +9,10 @@ def listar_funcionarios():
 
 
 def cadastrar_funcionario(funcionario):
-    Funcionario.objects.create(nome=funcionario.nome, nascimento=funcionario.nascimento,
-                               cargo=funcionario.cargo)
+    Funcionario.objects.create(
+        nome=funcionario.nome, 
+        nascimento=funcionario.nascimento,
+        cargo=funcionario.cargo,
+        usernames=funcionario.username,
+        password=funcionario.password
+    )

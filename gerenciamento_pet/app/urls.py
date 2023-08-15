@@ -1,7 +1,8 @@
 # flake8: noqa
+# pylint: disable=all
 """urls directory"""
 from django.urls import path
-from .views import cliente_views, pet_views, consulta_views, funcionario_views
+from .views import cliente_views, pet_views, consulta_views, funcionario_views, autenticacao_views
 
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
     path('lista_consulta/<int:id>', consulta_views.listar_consulta_id, name='listar_consulta_id'),
     path('cadastrar_funcionario', funcionario_views.inserir_funcionario, name='cadastrar_funcionario'),
     path('listar_funcionarios', funcionario_views.listar_funcionarios, name='listar_funcionarios'),
+    path('login', autenticacao_views.login_usuario, name='login'),
 ]
