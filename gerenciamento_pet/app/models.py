@@ -1,7 +1,8 @@
 # pylint: skip-file
 # flake8: noqa
 from django.db import models
-from django_localflavor_br.br_states import STATE_CHOICES
+from localflavor.br.br_states import STATE_CHOICES
+from django.contrib.auth.models import AbstractUser
 
 
 class EnderecoCliente(models.Model):
@@ -49,7 +50,8 @@ class ConsultaPet(models.Model):
     exames_prescritos = models.TextField(null=False, blank=True)
 
 
-class Funcionario(models.Model):
+# AbstractUser vai fazer com que a classe funcionario, também possuo campos necessários para fazer authentication
+class Funcionario(AbstractUser):
     CARGO_CHOICES = [
         (1, 'Veterinario'),
         (2, 'Financeiro'),

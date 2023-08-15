@@ -120,3 +120,6 @@ MEDIA_ROOT = DATA_DIR / 'media'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# modulo para authentication
+AUTH_USER_MODEL = 'app.Funcionario'
