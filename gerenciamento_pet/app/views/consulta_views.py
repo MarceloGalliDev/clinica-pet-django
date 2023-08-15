@@ -1,11 +1,16 @@
+# flake8: noqa
+# pylint: disable=all
 from django.shortcuts import redirect, render
-
 from ..forms import consulta_forms
 from ..services import pet_service, consulta_service
 from ..entidades import consulta
+from django.contrib.auth.decorators import user_passes_test, login_required
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from gerenciamento_pet import settings
 
 
-
+@user_passes_test(lambda u: u.cargo == 1)
 def inserir_consulta(request, id):
     if request.method == "POST":
         form_consulta = consulta_forms.ConsultaPetForm(request.POST)
@@ -26,6 +31,24 @@ def inserir_consulta(request, id):
         form_consulta = consulta_forms.ConsultaPetForm()
     return render(request, 'consultas/form_consulta.html', {'form_consulta': form_consulta})
 
+
+@login_required()
 def listar_consulta_id(request, id):
     consulta = consulta_service.listar_consulta(id)
     return render(request, 'consultas/lista_consulta.html', {'consulta': consulta})
+
+
+@login_required()
+def enviar_email_consulta(request, id):
+    # capturando dados de consulta que está no banco de dados de acordo com id
+    consulta = consulta_service.listar_consulta(id)
+    # capturando pet da consulta acima
+    pet_consulta = pet_service.listar_pet_id(consulta.pet.id)
+    assunto = 'Resumo da consulta do seu PET'
+    html_conteudo = render_to_string('consultas/consulta_email.html', {'consulta': consulta})
+    corpo_email = 'Resumo da sua consulta'
+    email_remente = settings.EMAIL_HOST_USER
+    email_destino = [pet_consulta.dono.email, ]
+    send_mail(assunto, corpo_email, email_remente, email_destino, html_message=html_conteudo)
+    
+    return redirect('listar_consulta_id', id)

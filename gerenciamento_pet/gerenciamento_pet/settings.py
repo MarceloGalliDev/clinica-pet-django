@@ -72,6 +72,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gerenciamento_pet.wsgi.application'
 
 
+# email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'marcelolemesgalli2@gmail.com'
+EMAIL_HOST_PASSWORD = '{token_email}'
+
+
 DATABASES = {
   'default': {
     'ENGINE': os.getenv('DATABASE_URL'),
@@ -123,3 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # modulo para authentication
 AUTH_USER_MODEL = 'app.Funcionario'
+
+
+# redefinindo rotas de login e logout
+LOGOUT_URL = 'logout'
+LOGIN_URL = 'login'
